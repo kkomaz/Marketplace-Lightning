@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import _ from 'lodash';
 import {
   Button,
   Container,
@@ -8,6 +7,7 @@ import {
   Row,
 } from 'react-bootstrap';
 import ProjectCard from './components/Project/ProjectCard'
+import ProjectForm from './components/Project/ProjectForm'
 
 function App() {
   const [show, setShow] = useState(false)
@@ -26,6 +26,10 @@ function App() {
     setShow(!show)
   }
 
+  const addProject = (newProject) => {
+    setProjects([...projects, newProject])
+  }
+
   return (
     <Container className="app">
       <Row className="justify-content-md-center">
@@ -38,8 +42,8 @@ function App() {
       {
         show &&
         <Row className="justify-content-md-center">
-          <Col md="auto">
-            <div>Hello World</div>
+          <Col xs={12}>
+            <ProjectForm addProject={addProject} />
           </Col>
         </Row>
       }
