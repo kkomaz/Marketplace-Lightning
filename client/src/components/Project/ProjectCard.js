@@ -5,14 +5,14 @@ import { Button, Card, Modal } from 'react-bootstrap'
 function ProjectCard(props) {
   const { project } = props
 
-  const [show, setShow] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
 
-  const handleClose = () => {
-    setShow(false)
+  const handleCloseDetails = () => {
+    setShowDetails(false)
   }
 
-  const handleShow = () => {
-    setShow(true)
+  const handleOpenDetails = () => {
+    setShowDetails(true)
   }
 
   return (
@@ -31,13 +31,13 @@ function ProjectCard(props) {
             <Button size="sm" style={{ marginRight: '10px' }}>
               Contribute Project
             </Button>
-            <Button size="sm" onClick={handleShow} variant="success">
-              Show Contributors
+            <Button size="sm" onClick={handleOpenDetails} variant="success">
+              Show Project Details
             </Button>
           </div>
         </Card.Body>
       </Card>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showDetails} onHide={handleCloseDetails}>
         <Modal.Header closeButton>
           <Modal.Title>Contributors</Modal.Title>
         </Modal.Header>
@@ -45,7 +45,7 @@ function ProjectCard(props) {
           Woohoo, you're reading this text in a modal!
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseDetails}>
             Close
           </Button>
         </Modal.Footer>
