@@ -5,6 +5,22 @@ const Contribution = mongoose.model('contributions')
 const keys = require('../config/keys.js')
 
 module.exports = app => {
+  app.get('/api/contributions', async (req, res) => {
+    const {
+      paid,
+      project_id,
+    } = req.query
+
+    try {
+      const contributions = await Contribution.find({ paid, project_id })
+      res.send(contributions)
+    } catch (e) {
+      res.status(500).send({
+        message: e.message || "Some error occured while retrieving contributions"
+      })
+    }
+  })
+
   app.post('/api/contributions', async (req, res) => {
     if (req.body.amount <= 0) {
       return res.status(400).send({
