@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import _ from 'lodash';
 import {
   Button,
   Container,
@@ -9,10 +10,15 @@ import {
 
 function App() {
   const [show, setShow] = useState(false)
+  const [projects, setProjects] = useState([])
 
-  const clickMe = async () => {
-    const items = await axios.get('http://localhost:5000/api/items')
-    console.log(items)
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    const result = await axios.get('/api/projects')
+    setProjects(result.data)
   }
 
   const toggleForm = () => {
@@ -36,6 +42,21 @@ function App() {
           </Col>
         </Row>
       }
+      <Row>
+        {
+          projects.map((project) => {
+            return (
+              <Col xs={4}>
+                <div>
+                  <p>{_.get(project, 'title', '')}</p>
+                  <p>{_.get(project, 'description', '')}</p>
+                  <p>{_.get(project, 'goal', '')}</p>
+                </div>
+              </Col>
+            )
+          })
+        }
+      </Row>
     </Container>
   );
 }
