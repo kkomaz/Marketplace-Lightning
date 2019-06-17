@@ -27,6 +27,7 @@ module.exports = app => {
   })
 
   app.get('/api/projects', async (req, res) => {
+    console.log(process.env)
     try {
       const projects = await Project.find()
       res.send(projects)

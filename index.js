@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys.js')
 require('./model/Project');
+require('./model/Contribution');
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express()
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 require('./routes/ProjectRoutes')(app);
+require('./routes/ContributionRoutes')(app);
 
 app.get('/', (req, res) => {
   res.send({ hi: 'there' })
