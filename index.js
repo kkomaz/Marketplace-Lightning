@@ -1,7 +1,8 @@
 const express = require('express');
-const monoose = require('mongoose');
+const mongoose = require('mongoose');
+const keys = require('./config/keys.js')
 
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds139037.mlab.com:39037/open-node-test');
+mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express()
 
