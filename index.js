@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys.js')
-require('./model/Item');
+require('./model/Project');
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 
 const app = express()
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-require('./routes/ItemRoutes')(app);
+require('./routes/ProjectRoutes')(app);
 
 app.get('/', (req, res) => {
   res.send({ hi: 'there' })

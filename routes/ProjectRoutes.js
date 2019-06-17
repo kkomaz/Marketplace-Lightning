@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
-const Item = mongoose.model('items');
+const Project = mongoose.model('projects');
 
 module.exports = app => {
-  app.post('/api/items', async (req, res) => {
+  app.post('/api/projects', async (req, res) => {
     if (!req.body.description) {
       return res.status(400).send({
-        message: 'Item content can not be empty'
+        message: 'Project content can not be empty'
       })
     }
 
-    const item = new Item({
-      name: req.body.name,
-      price: req.body.price,
+    const item = new Project({
+      title: req.body.title,
+      goal: req.body.goal,
       description: req.body.description,
     })
 
@@ -20,14 +20,14 @@ module.exports = app => {
       res.send(data)
     } catch (e) {
       res.status(500).send({
-        message: e.message || "Some error occurred while creating the Item."
+        message: e.message || "Some error occurred while creating the Project."
       });
     }
   })
 
-  app.get('/api/items', async (req, res) => {
+  app.get('/api/projects', async (req, res) => {
     try {
-      const items = await Item.find()
+      const items = await Project.find()
       res.send(items)
     } catch (e) {
       res.status(500).send({
@@ -36,19 +36,19 @@ module.exports = app => {
     }
   })
 
-  app.get('/api/items/:itemId', async (req, res) => {
+  app.get('/api/projects/:projectId', async (req, res) => {
     try {
-      const item = await Item.findById(req.params.itemId)
+      const item = await Project.findById(req.params.itemId)
       if (!item) {
         return res.status(404).send({
-          message: "Item not found with id " + req.params.itemId
+          message: "Project not found with id " + req.params.itemId
         })
       }
       res.send(item)
     } catch (e) {
       if (e.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Item not found with id " + req.params.itemId
+          message: "Project not found with id " + req.params.itemId
         });
       }
 
@@ -58,23 +58,23 @@ module.exports = app => {
     }
   })
 
-  app.put('/api/items/:itemId', async (req, res) => {
+  app.put('/api/projects/:projectId', async (req, res) => {
     if (!req.body.description) {
       return res.status(400).send({
-        message: 'Item content can not be empty'
+        message: 'Project content can not be empty'
       })
     }
 
     try {
-      const item = await Item.findByIdAndUpdate(req.params.itemId, {
-        name: req.body.name,
-        price: req.body.price,
+      const item = await Project.findByIdAndUpdate(req.params.itemId, {
+        title: req.body.title,
+        goal: req.body.goal,
         description: req.body.description,
       }, { new: true })
 
       if (!item) {
         return res.status(404).send({
-          message: 'Item not found with id ' + req.params.itemId
+          message: 'Project not found with id ' + req.params.itemId
         })
       }
 
@@ -82,33 +82,33 @@ module.exports = app => {
     } catch (e) {
       if (e.kind === 'ObjectId') {
         return res.status(404).send({
-            message: "Item not found with id " + req.params.itemId
+            message: "Project not found with id " + req.params.itemId
         });
       }
       return res.status(500).send({
-        message: "Error updating Item with id " + req.params.itemId
+        message: "Error updating Project with id " + req.params.itemId
       });
     }
   })
 
-  app.delete('/api/items/:itemId', async (req, res) => {
+  app.delete('/api/projects/:projectId', async (req, res) => {
     try {
-      const item = await Item.findByIdAndRemove(req.params.itemId)
+      const item = await Project.findByIdAndRemove(req.params.itemId)
       if (!item) {
         return res.status(404).send({
-          message: 'Item not found with id ' + req.params.itemId
+          message: 'Project not found with id ' + req.params.itemId
         })
       }
 
-      res.send({ message: 'Deleted Item successfully!'})
+      res.send({ message: 'Deleted Project successfully!'})
     } catch (e) {
       if (e.kind === 'ObjectId') {
         return res.status(404).send({
-            message: "Item not found with id " + req.params.itemId
+            message: "Project not found with id " + req.params.itemId
         });
       }
       return res.status(500).send({
-        message: "Error updating Item with id " + req.params.itemId
+        message: "Error updating Project with id " + req.params.itemId
       });
     }
   })

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const itemSchema = new Schema({
+const projectSchema = new Schema({
   title: String,
   description: String,
   goal: Number,
 })
 
-mongoose.model('items', itemSchema)
+mongoose.model('projects', projectSchema)
