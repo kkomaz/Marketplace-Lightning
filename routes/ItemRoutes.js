@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Item = mongoose.model('items');
 
 module.exports = app => {
-  app.post('/items', async (req, res) => {
+  app.post('/api/items', async (req, res) => {
     if (!req.body.description) {
       return res.status(400).send({
         message: 'Item content can not be empty'
@@ -25,7 +25,7 @@ module.exports = app => {
     }
   })
 
-  app.get('/items', async (req, res) => {
+  app.get('/api/items', async (req, res) => {
     try {
       const items = await Item.find()
       res.send(items)
@@ -36,7 +36,7 @@ module.exports = app => {
     }
   })
 
-  app.get('/items/:itemId', async (req, res) => {
+  app.get('/api/items/:itemId', async (req, res) => {
     try {
       const item = await Item.findById(req.params.itemId)
       if (!item) {
@@ -58,7 +58,7 @@ module.exports = app => {
     }
   })
 
-  app.put('/items/:itemId', async (req, res) => {
+  app.put('/api/items/:itemId', async (req, res) => {
     if (!req.body.description) {
       return res.status(400).send({
         message: 'Item content can not be empty'
@@ -91,7 +91,7 @@ module.exports = app => {
     }
   })
 
-  app.delete('/items/:itemId', async (req, res) => {
+  app.delete('/api/items/:itemId', async (req, res) => {
     try {
       const item = await Item.findByIdAndRemove(req.params.itemId)
       if (!item) {
