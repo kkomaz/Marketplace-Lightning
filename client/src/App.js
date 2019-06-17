@@ -7,6 +7,7 @@ import {
   Col,
   Row,
 } from 'react-bootstrap';
+import ProjectCard from './components/Project/ProjectCard'
 
 function App() {
   const [show, setShow] = useState(false)
@@ -47,11 +48,9 @@ function App() {
           projects.map((project) => {
             return (
               <Col xs={4}>
-                <div>
-                  <p>{_.get(project, 'title', '')}</p>
-                  <p>{_.get(project, 'description', '')}</p>
-                  <p>{_.get(project, 'goal', '')}</p>
-                </div>
+                <ProjectCard
+                  project={project}
+                />
               </Col>
             )
           })
