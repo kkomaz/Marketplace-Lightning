@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const itemSchema = new Schema({
-  name: String,
-  price: String,
+  title: String,
   description: String,
+  goal: Number,
 })
 
 mongoose.model('items', itemSchema)
