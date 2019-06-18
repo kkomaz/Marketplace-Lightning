@@ -32,13 +32,14 @@ function App() {
 
   return (
     <Container className="app">
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center" style={{ marginBottom: '10px', marginTop: '10px' }}>
         <Col md="auto">
           <Button onClick={toggleForm}>
             Show Campaign Form
           </Button>
         </Col>
       </Row>
+
       {
         show &&
         <Row className="justify-content-md-center">
@@ -47,6 +48,7 @@ function App() {
           </Col>
         </Row>
       }
+
       <Row>
         {
           projects.map((project) => {

@@ -39,6 +39,10 @@ function ProjectDetail(props) {
 
       <ProgressBar now={progress} />
 
+      <p style={{ margin: '10px 0' }}>
+        {project.description}
+      </p>
+
       <div style={{ marginTop: '10px' }}>
         <h5>
           Contributors
