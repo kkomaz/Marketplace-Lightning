@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Card, Modal } from 'react-bootstrap'
+import ProjectDetail from './ProjectDetail'
 
 function ProjectCard(props) {
   const { project } = props
@@ -22,10 +23,7 @@ function ProjectCard(props) {
         <Card.Body>
           <Card.Title>{project.title}</Card.Title>
           <Card.Text>
-            {project.description}
-          </Card.Text>
-          <Card.Text>
-            Goal: {project.goal}
+            Goal: ${project.goal}
           </Card.Text>
           <div style={{ display: 'flex' }}>
             <Button size="sm" style={{ marginRight: '10px' }}>
@@ -39,10 +37,10 @@ function ProjectCard(props) {
       </Card>
       <Modal show={showDetails} onHide={handleCloseDetails}>
         <Modal.Header closeButton>
-          <Modal.Title>Contributors</Modal.Title>
+          <Modal.Title>Project Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Woohoo, you're reading this text in a modal!
+          <ProjectDetail project={project} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseDetails}>
