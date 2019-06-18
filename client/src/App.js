@@ -53,7 +53,7 @@ function App() {
         {
           projects.map((project) => {
             return (
-              <Col xs={4}>
+              <Col xs={4} key={project._id}>
                 <ProjectCard
                   project={project}
                 />

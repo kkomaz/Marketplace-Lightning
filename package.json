@@ -9,7 +9,6 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "proxy": "http://localhost:5000",
   "author": "",
   "license": "ISC",
   "dependencies": {

@@ -61,10 +61,10 @@ function ProjectForm(props) {
         <Form.Control.Feedback type="invalid">Please enter a description</Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formGoal">
-          <Form.Label>Goal</Form.Label>
+          <Form.Label>Goal (USD)</Form.Label>
           <Form.Control
             required
-            type="text"
+            type="number"
             placeholder="Enter Goal"
           />
         <Form.Control.Feedback type="invalid">Please enter a goal</Form.Control.Feedback>

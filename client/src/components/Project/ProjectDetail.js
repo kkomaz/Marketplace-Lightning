@@ -57,7 +57,7 @@ function ProjectDetail(props) {
           <tbody>
             {
               contributions.map(contributor => (
-                <tr>
+                <tr key={contributor._id}>
                   <td>{contributor.name}</td>
                   <td>${contributor.amount.toFixed(2)}</td>
                 </tr>

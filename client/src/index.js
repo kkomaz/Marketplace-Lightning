@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 const setAxiosHeaders = () => {
-  axios.defaults.baseURL = 'http://localhost:5000'
+  axios.defaults.baseURL = 'https://02fade59.ngrok.io'
 }
 
 setAxiosHeaders()

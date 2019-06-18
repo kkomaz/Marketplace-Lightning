@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Button, Card, Modal } from 'react-bootstrap'
 import ProjectDetail from './ProjectDetail'
+import ContributionForm from '../Contribution/ContributionForm'
 
 function ProjectCard(props) {
   const { project } = props
 
   const [showDetails, setShowDetails] = useState(false)
+  const [showContribution, setShowContribution] = useState(false)
 
   const handleCloseDetails = () => {
     setShowDetails(false)
@@ -14,6 +16,14 @@ function ProjectCard(props) {
 
   const handleOpenDetails = () => {
     setShowDetails(true)
+  }
+
+  const handleCloseContributions = () => {
+    setShowContribution(false)
+  }
+
+  const handleOpenContributions = () => {
+    setShowContribution(true)
   }
 
   return (
@@ -26,7 +36,7 @@ function ProjectCard(props) {
             Goal: ${project.goal}
           </Card.Text>
           <div style={{ display: 'flex' }}>
-            <Button size="sm" style={{ marginRight: '10px' }}>
+            <Button size="sm" onClick={handleOpenContributions} style={{ marginRight: '10px' }}>
               Contribute Project
             </Button>
             <Button size="sm" onClick={handleOpenDetails} variant="success">
@@ -35,6 +45,7 @@ function ProjectCard(props) {
           </div>
         </Card.Body>
       </Card>
+
       <Modal show={showDetails} onHide={handleCloseDetails}>
         <Modal.Header closeButton>
           <Modal.Title>Project Details</Modal.Title>
@@ -44,6 +55,23 @@ function ProjectCard(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseDetails}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showContribution} onHide={handleCloseContributions}>
+        <Modal.Header closeButton>
+          <Modal.Title>Contribution Info</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ContributionForm
+            projectId={project._id}
+            onComplete={handleCloseContributions}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseContributions}>
             Close
           </Button>
         </Modal.Footer>
