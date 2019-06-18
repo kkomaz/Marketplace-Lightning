@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 ReactDOM.render(<App />, document.getElementById('root'));
 
 const setAxiosHeaders = () => {
-  axios.defaults.baseURL = 'https://92ab375c.ngrok.io'
+  axios.defaults.baseURL = process.env.NODE_ENV === 'production' ? 'https://enigmatic-sierra-95404.herokuapp.com' : 'https://92ab375c.ngrok.io'
 }
 
 setAxiosHeaders()
