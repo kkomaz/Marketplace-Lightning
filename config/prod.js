@@ -1,5 +1,5 @@
 module.exports = {
   mongoURI: process.env.mongoURI,
-  openNodeKey: prcoess.env.openNodeKey,
+  openNodeKey: process.env.openNodeKey,
   openNodeUrl: process.env.openNodeUrl
 }
