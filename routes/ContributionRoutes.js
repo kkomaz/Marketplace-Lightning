@@ -42,7 +42,7 @@ module.exports = app => {
         description: 'Contribution to Project',
         currency: 'USD',
         order_id: data._id,
-        callback_url: 'https://92ab375c.ngrok.io/api/contributions/webhook'
+        callback_url: process.env.NODE_ENV === 'production' ? 'https://enigmatic-sierra-95404.herokuapp.com/' : 'https://92ab375c.ngrok.io/api/contributions/webhook'
       }, { headers: { Authorization: keys.openNodeKey }})
 
       res.send(charge.data.data)

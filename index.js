@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse application/json
 app.use(bodyParser.json())
 
-const whitelist = ['http://example1.com', 'http://example2.com']
+const whitelist = []
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -35,10 +35,6 @@ if (process.env.NODE_ENV === 'production') {
 
 require('./routes/ProjectRoutes')(app);
 require('./routes/ContributionRoutes')(app);
-
-app.get('/', (req, res) => {
-  res.send({ hi: 'there' })
-})
 
 const PORT = process.env.PORT || 5000;
 app.listen((PORT), () => {
